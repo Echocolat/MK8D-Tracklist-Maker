@@ -24,7 +24,7 @@ def load_tracklist_main(root):
         temp_dict = json.loads(file.read())
         current_dict = [track_name for track_name in temp_dict if temp_dict[track_name] == 1]
         random.shuffle(current_dict)
-        tracklist_status.set(os.path.basename(file.name))
+        tracklist_status.set(f"Loaded tracklist:\n{os.path.basename(file.name)}")
         counter = 1
         num_tracks_in_tracklist = len(current_dict)
         track_status.set(value = 'Click Random Track')
@@ -38,11 +38,11 @@ def get_random_track():
 
     if counter - 1 == num_tracks_in_tracklist:
 
-        track_status.set('No more tracks')
+        track_status.set('No more tracks!')
 
     else:
 
-        track_status.set(f'Next track:\n{current_dict.pop()}\n{counter}\{num_tracks_in_tracklist}')
+        track_status.set(f'Next track ({counter}\{num_tracks_in_tracklist}):\n{current_dict.pop()}')
 
         counter = counter + 1
 
@@ -75,9 +75,9 @@ def main_window():
     track_list_manager_button.place(x = 40, y = 250)
     tracklist_load_button.place(x = 300, y = 250)
     exit_button.place(x = 180, y = 250)
-    current_tracklist.place(x = 20, y = 0)
-    current_track.place(x = 320, y = 0)
-    random_track.place(x = 320, y = 40)
+    current_tracklist.place(x = 100, y = 0, anchor = "n")
+    current_track.place(x = 350, y = 0, anchor = 'n')
+    random_track.place(x = 350, y = 40, anchor = "n")
 
     root.mainloop()
 
